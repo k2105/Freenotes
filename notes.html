@@ -1,0 +1,113 @@
+<html>
+  <head>
+    <style>
+  
+
+#myInput {
+  background-image:
+  url('/img/search.png');
+
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 4px solid #ddd;
+  margin-top: -1px;
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a.header {
+  background-color: #e2e2e2;
+  cursor: default;
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+
+
+    </style>
+  </head>
+  <body>
+<center><h2>Notes and Ebooks</h2></center>
+
+<input type="text" id="myInput"
+onkeyup="myFunction()" placeholder=
+"Search Here.."title="Type in a name">
+
+<ul id="myUL">
+
+<li><a href="https://www.mediafire.com/file/x3vcxoby2r7f86u/C-_Programming_notes_.pdf/file" class="header">C programming </a></li>
+<li><a href="https://www.mediafire.com/file/b0p7gjokmcd6rwr/C_-_Interview_Question_and_answer.pdf/file">C interview Questions and answers </a></li>
+<li><a href="https://www.mediafire.com/file/1z0m22og0taxljn/OOP_10122018.pdf/file">Object Oriented Programming</a></li>
+<li><a href="https://www.mediafire.com/file/zk4wo3b1odstqzf/Cloud_Computing_Interview_Questions.pdf/file">Cloud Computing </a></li>
+
+<li><a href="https://www.mediafire.com/file/cgop2t2kmmynqur/411notes.pdf/file" class="header">Machine Learning and Data Mining</a></li>
+<li><a href="https://www.mediafire.com/file/uo5asd7482cbbg1/CSE-VII-SOFTWARE-ARCHITECTURES-06IS72-NOTES.pdf/file">Software Architecture</a></li>
+<li><a href="https://www.mediafire.com/file/izh1u3pwd1lss7q/dist-03-4.pdf/file">Networking Concept</a></li>
+
+<li><a href="https://www.mediafire.com/file/ngjfgzagujnz4y2/BCA-221_Network_Fundamentals.pdf/file" class="header">Computer Networking</a></li>
+<li><a href="https://www.mediafire.com/file/tucxymq1u7ndk78/1546508078.pdf/file">Operating System</a></li>
+<li><a href="https://www.mediafire.com/file/7wfr34zd4llrrtn/2130702_DS_2015_24112015_025019AM.pdf/file">Data Structures</a></li>
+<li><a href="https://www.mediafire.com/file/fms6thln2pub4mn/DocsITIIBTechIISemLecCOA.pdf/file">Computer organization and architecture</a></li>
+<li><a href="https://www.mediafire.com/file/2g00k7isfmdop7b/Tutorial_EDIT.pdf/file">Python official Documents</a></li>
+<li><a href ="https://www.mediafire.com/file/yczilg2zzcdkpxw/java_tutorial.pdf/file">Java notes</a></li>
+<li><a href ="https://www.mediafire.com/file/vpy84l6qq3pct9c/HTML_CSS_for_project_approach_.pdf/file">HTML and CSS</a></li>
+<li><a href="https://www.mediafire.com/file/gmep5fextjxsw10/lecture1428643004.pdf/file">Artificial intelligence Brief</a></li>
+<li><a href ="https://www.mediafire.com/file/p313sbru7fg9hug/dbmsnotes.pdf/file">DBMS Notes</a></li>
+<li><a href= " https://www.mediafire.com/file/uovn3kcfnwx26hv/Database_Management_Systems.pdf/file">DBMS Brief Notes</a></li>
+</ul>
+
+<script>
+
+ /* Declare variables */  
+
+function myFunction() {
+
+
+var input, filter, ul, li, a, i;
+input=document.getElementById("myInput");
+filter = input.value.toUpperCase();
+ul = document.getElementById("myUL");
+li = ul.getElementsByTagName("li");
+
+
+ /* Loop through all list items, and hide
+ those who don't match the search query */ 
+
+for (i = 0; i < li.length; i++) {
+a = li[i].getElementsByTagName("a")[0];
+
+if (a.innerHTML.toUpperCase()
+.indexOf(filter) > -1) {
+  li[i].style.display = "";
+
+    } else {
+      li[i].style.display = "none";
+
+        }
+    }
+}
+
+</script>
+  </body>
+</html>
