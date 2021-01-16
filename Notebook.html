@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Notebook</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+    
+    
+    <style>
+        
+        
+         
+
+body{
+    background-color:#ddd;
+}
+
+#notebook{
+    position:fixed;
+    top:15%;
+    left:15%;
+    width:70%;
+    height:70%;
+    perspective:125vw;
+    transition:transform 1s;
+    box-shadow:0px 0 7px black;
+    color:f9f9f9f9;
+}
+
+.page{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-color:#f5f5f5;
+    left:-1px;
+    top:0;
+    transition:transform 1s, color 1s;
+    transform-origin:0 50%;
+    border-left:1px solid #999;
+    user-select:none;
+    
+}
+
+.page p{
+    font-size:2.5vmin;
+    margin:5%;
+    letter-spacing:1px;
+    word-spacing:2px;
+}
+
+.movieTitle{
+    font-size:3.25vmin !important;
+    font-family:fantasy;
+}
+
+.movieImage{
+    width:40vmin;
+    position:relative;
+    margin:auto;
+    float:right;
+}
+
+#cover{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(215deg, #242424 , #222222);
+    transform-origin:0 50%;
+    transition:transform 1s;
+    z-index:11;
+}
+
+#firstPage{
+    
+    text-align:center;
+}
+
+#br{
+    position:absolute;
+    right:15%;
+    top:0;
+    width:15%;
+    height:100%;
+    background-color:#432;
+}
+
+#a{
+    z-index:10;
+}
+#b{
+    z-index:9;
+}
+#c{
+    z-index:8;
+}
+#d{
+    z-index:7;
+}
+#e{
+    z-index:6;
+}
+#f{
+    z-index:5;
+}
+#g{
+    z-index:4;
+}
+#h{
+    z-index:3;
+}
+#i{
+    z-index:2;
+}
+#j{
+    z-index:1;
+}
+#backCover{
+    background:linear-gradient(135deg, #353535, #252525);
+    z-index:0;
+}
+
+.fa-arrow-circle-right{
+    position:absolute;
+    bottom:5%;
+    right:5%;
+    font-size:150%;
+    transition:transform 0.3s;
+}
+
+.fa-arrow-circle-left{
+    position:absolute;
+    left:5%;
+    bottom:5%;
+    font-size:150%;
+    transition:transform 0.3s;
+}
+
+.fa-arrow-circle-left:hover, .fa-arrow-circle-right:hover{
+    transform:scale(1.3);
+}
+
+#secretPaper{
+    position:absolute;
+    width:45%;
+    height:45%;
+    background-color:#eee;
+    left:27.5%;
+    top:33%;
+    transform:rotate(15deg);
+    transition:transform 1s, top 1s;
+    text-align:center;
+}
+
+#hideout{
+    position:absolute;
+    width:100%;
+    height:calc(60% - 1vmin);
+    top:40%;
+    border-top:1vmin solid black;
+    background-color:#222222;
+}
+
+#secretPaper q{
+    font-size:2.75vmin;
+    text-align:center;
+    letter-spacing:1px;
+    word-spacing:2px;
+    font-family:cursor:;;
+}
+
+        
+    </style>
+    
+    <script>
+        
+        
+        
+
+function changeLeft(x,z){
+    document.getElementById(x).style.transform ="rotateY(0deg)";
+    setTimeout(function(){
+        document.getElementById(x).style.zIndex=z;
+    },500);
+    document.getElementById(x).style.color = 'black';
+}
+
+function changeRight(y,z){
+    document.getElementById(y).style.transform ="rotateY(-90deg)";
+    setTimeout(function(){
+        document.getElementById(y).style.zIndex=z;
+    },500);
+    document.getElementById(y).style.color = 'transparent';
+}
+
+function waterMark(wh, left, top,fontSize){
+    var mark = document.createElement("div");
+    var link = document.createElement("a");
+    document.getElementById("firstPage").appendChild(link);
+    
+    link.appendChild(mark);
+    mark.style=`
+        position:absolute;
+        left:${left};
+        top:${top};
+        width:${wh};
+        height:${wh};
+        border-radius:50%;
+        background:url(${"https://www.sololearn.com/Icons/Avatars/7938943.jpg"} );
+        background-size:cover;
+        background-position:center;
+        text-align:center;
+        line-height:${wh};
+        color:white;
+        font-size:${fontSize};
+        opacity:1;
+        box-shadow:0 0 1px black;
+        transform:translate(-50%, -50%)
+        `;
+    mark.innerText="Original";
+}
+
+window.onload = function(){
+    waterMark("25vmin", "50%", "50%", "3.5vmin");
+};
+
+
+var position = false;
+function secretPage(){
+    if(position === false){
+        document.getElementById("secretPaper").style.top="-100vh";
+    document.getElementById("secretPaper").style.transform ="rotate(0deg)";
+    document.getElementById("lastArrow").style.display="none";
+    setTimeout(function(){
+        document.getElementById("secretPaper").style.top="30%";
+        document.getElementById("secretPaper").style.zIndex = "2";
+        position = true;
+        },1500);
+    }
+    else{
+        document.getElementById("secretPaper").style.top="-100vh";
+    document.getElementById("secretPaper").style.transform ="rotate(15deg)";
+    setTimeout(function(){
+        document.getElementById("secretPaper").style.top="30%";
+        document.getElementById("secretPaper").style.zIndex = "-1";
+        document.getElementById("lastArrow").style.display="block";
+        position = false;
+    },1500);
+    }
+}
+
+        
+        
+    </script>
+    
+        <div id ="notebook">
+            <div id = "cover" onclick ="changeRight('cover')">
+                <i onclick ="changeRight('cover')" class="fa fa-arrow-circle-right"></i>
+                <div id = "br"></div>
+            </div>
+            <div class = "page" id ="a">
+                <p id = "firstPage">Read about great personality</p>
+                <!--blank-->
+                <i class="fa fa-arrow-circle-left" onclick = "changeLeft('cover',11)"></i>
+                <i class="fa fa-arrow-circle-right" onclick = "changeRight('a',12)"></i>
+            </div>
+            <div class = "page" id = "b">
+                <img src = "aryabhatta.jpg" class = "movieImage">
+                <br>
+                <p class = 'movieTitle'>Aryabhatt</p>
+                <p>
+                  
+                  
+Aryabhata was an acclaimed mathematician-astronomer. He was born in Kusumapura (present day Patna) in Bihar, India. His contribution to mathematics, science and astronomy is immense, and yet he has not been accorded the recognition in the world history of science. At the age of 24, he wrote his famed “Aryabhatiya”. He was aware of the concept of zero, as well as the use of large numbers up to 1018. He was the first to calculate the value for ‘pi’ accurately to the fourth decimal point. He devised the formula for calculating areas of triangles and circles. He calculated the circumference of the earth as 62,832 miles, which is an excellent approximation, and suggested that the apparent rotation of the heavens was due to the axial rotation of the earth on its axis. He was the first known astronomer to devise a continuous counting of solar days, designating each day with a number. He asserted that the planets shine due to the reflection of sunlight, and that the eclipses occur due to the shadows of moon and earth. His observations discount the “flat earth” concept, and lay the foundation for the belief that earth and other planets orbit the sun.
+
+                  
+                </p>
+                <i class="fa fa-arrow-circle-left" onclick = "changeLeft('a',10)"></i>
+                <i class="fa fa-arrow-circle-right" onclick = "changeRight('b',13)"></i>
+            </div>
+            <div class = "page" id = "c">
+                <img src = "jcb.jpg" class = "movieImage">
+                <br>
+                <p class = "movieTitle">Jagdish Chandra Bose</p>
+                <p>
+                  
+Sir Jagadish Chandra Bose is one of the most prominent first Indian scientists who proved by experimentation that both animals and plants share much in common. He demonstrated that plants are also sensitive to heat, cold, light, noise and various other external stimuli. Bose contrived a very sophisticated instrument called the crescograph, which could record and observe plants minute responses to external stimulants. It was capable of magnifying the motion of plant tissues to about 10,000 times of their actual size and, in doing so, found many similarities between plants and other living organisms.
+                  
+                </p>
+                <i class="fa fa-arrow-circle-left" onclick = "changeLeft('b',9)"></i>
+                <i class="fa fa-arrow-circle-right" onclick = "changeRight('c',14)"></i>
+            </div>
+            <div class = "page" id = "d">
+                <img src = "kalidas.jpg" class = "movieImage">
+                <br>
+                <p class = "movieTitle">Mahakavi Kalidas</p>
+                <p>
+                  
+                  
+Mahakavi Kalidas was a famous classical poet in Sanskrit. He was renowned as Mahakavi and made a glorious contribution to the Sanskrit literature. Kalidas Poems brought a unique quality to the literary works. His writings are heart touching and an intellectual treat to the thinkers and the common readers.
+Sanskrit Writer Kalidas stories:
+Mahakavi Kalidas was born before 6th century CE in India. There are some doubts about the exact time of the birth. However, he worked in the court of Emperor Vikramaditya ruler of Ujjain. Kalidas had a lot of knowledge about whole Bharat by traveling all over India in those days. For instance in the poem ‘Meghaduta’, his descriptions about mountains, rivers, cities and villages narrated with full pictures form. The narration about the beauty of Himalayas makes the reader lot of impression. In another Kalidasa poems ‘Raghuvamsha’, he discussed the place, the people and their lifestyle, their habits, professions, and trades. The narration placed every part of Bharath in his Magnum opuses.
+
+Kalidas Magnum opuses:
+1. Kumarasambhava
+
+2. Raghuvamsha
+
+3. Malavikagnimitra
+
+4. Vikramorvashiya
+
+5. Abhijnana Shakuntala
+
+6. Meghaduta
+
+7. Ritusamhara
+                  
+                </p>
+                <i class="fa fa-arrow-circle-left" onclick = "changeLeft('c',8)"></i>
+                <i class="fa fa-arrow-circle-right" onclick = "changeRight('d',15)"></i>
+            </div>
+            <div class = "page" id = "e">
+                <img src = "apj.jpg" class = "movieImage">
+                <br>
+                <p class = "movieTitle">Abdul Kalam Azad</p>
+                <p>
+                  
+Abdul Kalam was an aerospace scientist, joined India’s defense after graduating from Madras Institute of Technology. He is known to be one of the prominent figures in the development of the country’s nuclear capabilities and is known to be a nation’s hero in building the country’s scientific power. Abdul Kalam has also served the country as a president for one term 2002 to 2007 and he died of a heart attack on July 27, 2015. 
+A.P.J. Abdul Kalam Childhood & Early Life 
+A.P.J Abdul Kalam was born and brought up on the island of Dhanushukodi on the Southeastern coast of India. He developed early the fascination towards flights after watching birds and later it turned into aeronautics after he came across a newspaper article about the British fighter plane. He was brought in a modest place as his dad used to build rented boats. Abdul Kalam was a brilliant student who always showed promising performance in science and mathematics. 
+His hopes of becoming a fighter pilot were shattered when he missed the chance in the Indian Air Force. Later, Abdul Kalam joined the Defense Research for India and the development organization - DRDO on the senior scientist assistant post in 1958. Later he moved to Indian Space Research Organization-ISRO in 1969, he also named the first satellite launch vehicle which was designed and produced on the Indian land. 
+                  
+                  
+                </p>
+                <i class="fa fa-arrow-circle-left" onclick = "changeLeft('d',7)"></i>
+                <i class="fa fa-arrow-circle-right" onclick = "changeRight('e',16)"></i>
+            </div>
+            <div class = "page" id = "f">
+                <img src = "gandhi.jpg" class = "movieImage">
+                <br>
+                <p class = "movieTitle">Mahatma Gandhi</p>
+                <p>
+                  
+                  
+Mohandas Karamchand Gandhi was born on October 2, 1869, at Porbandar, in the present-day Indian state of Gujarat. His father was the dewan (chief minister) of Porbandar; his deeply religious mother was a devoted practitioner of Vaishnavism (worship of the Hindu god Vishnu), influenced by Jainism, an ascetic religion governed by tenets of self-discipline and nonviolence. At the age of 19, Mohandas left home to study law in London at the Inner Temple, one of the city’s four law colleges. Upon returning to India in mid-1891, he set up a law practice in Bombay, but met with little success. He soon accepted a position with an Indian firm that sent him to its office in South Africa. Along with his wife, Kasturbai, and their children, Gandhi remained in South Africa for nearly 20 years.
+                  
+                  
+                </p>
+                <i class="fa fa-arrow-circle-left" onclick = "changeLeft('e',6)"></i>
+                <i class="fa fa-arrow-circle-right" onclick = "changeRight('f',17)"></i>
+            </div>
+            <div class = "page" id = "g">
+                <img src = "mp.jpg" class = "movieImage">
+                <br>
+                <p class = "movieTitle">Maharana Pratap</p>
+                <p>
+                  
+                  
+                  
+Maharana Pratap was born on 9th May 1540 in Kumbhalgarh, Rajasthan. His father was Maharana Udai Singh II and his mother was Rani Jeevant Kanwar. Maharana Udai Singh II ruled the kingdom of Mewar, with his capital at Chittor. Maharana Pratap was the eldest of twenty-five sons and hence given the title of Crown Prince. He was destined to be the 54th ruler of Mewar, in the line of the Sisodiya Rajputs.
+
+In 1567, when Crown Prince Pratap Singh was only 27, Chittor was surrounded by the Mughal forces of Emperor Akbar. Maharana Udai Singh II decided to leave Chittor and move his family to Gogunda, rather than capitulate to the Mughals. The young Pratap Singh wanted to stay back and fight the Mughals but the elders intervened and convinced him to leave Chittor, oblivious of the fact that this move from Chittor was going to create history for all times to come.
+                  
+                  
+                  
+                </p>
+                <i class="fa fa-arrow-circle-left" onclick = "changeLeft('f',5)"></i>
+                <i class="fa fa-arrow-circle-right" onclick = "changeRight('g',18)"></i>
+            </div>
+            <div class = "page" id = "h">
+                <img src = "prc.jpg" class = "movieImage">
+                <br>
+                <p class = "movieTitle">Prithvi Raj Chauhan</p>
+                <p>
+                  
+Prithviraj Chauhan, the last ruler of Chauhan dynasty to sit on the throne of Delhi, was born in 1168 as the son of Someshwar Chauhan, the king of Ajmer. He was a brilliant child and very sharp at learning the military skills. He had the skill of hitting the target only on the basis of its sound. He succeeded to the throne of Ajmer at the age of thirteen, in 1179,when his father died in a battle.His grandfather Angam, ruler of Delhi, declared him heir to the throne of Delhi after hearing about his courage and bravery. He once killed a lion on his own without any weapon. He was known as the warrior king.
+
+                  
+                  
+                  
+
+                <i class="fa fa-arrow-circle-left" onclick = "changeLeft('i',2)"></i>
+                <i class="fa fa-arrow-circle-right" onclick = "changeRight('j',21)"></i>
+            </div>
+            <div class = "page" id = "backCover">
+                <div id = "secretPapeinr" onclick = "secretPage()">
+                    <q>Life moves so fast, and we’re so close even if there IS a long time but when we are in hurry we don't even realise that its over.</q>
+                </div>
+                <div id = "hideout"></div>
+                <i class="fa fa-arrow-circle-left" onclick = "changeLeft('j',1)" id ="lastArrow"></i>
+            </div>
+        </div>
+    </body>
+</html>
